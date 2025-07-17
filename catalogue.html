@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Будівельні товари | Будматеріали</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #CD853F;
+            --light: #F5F5DC;
+            --dark: #2E2E2E;
+            --gray: #7D7D7D;
+            --success: #4CAF50;
+        }
+        
+        body {
+            background-color: #f9f5f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--light);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--light);
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 30px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .header-actions a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .header-actions i {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Навігація */
+        nav {
+            background-color: var(--accent);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--primary);
+        }
+        
+        /* Бредкрамби */
+        .breadcrumbs {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .breadcrumbs span {
+            margin: 0 8px;
+        }
+        
+        /* Заголовок категорії */
+        .category-header {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .category-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .category-header p {
+            color: var(--gray);
+            max-width: 800px;
+        }
+        
+        /* Основний контент */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Фільтри */
+        .filters {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .filters h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-option input {
+            margin-right: 10px;
+        }
+        
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: var(--gray);
+        }
+        
+        .apply-filters {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .apply-filters:hover {
+            background: var(--secondary);
+        }
+        
+        /* Сортування та інформація */
+        .sorting-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .results-info {
+            color: var(--gray);
+        }
+        
+        .sort-by select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+        
+        /* Картки товарів */
+        .products {
+            flex: 1;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--success);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            position: relative;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-category {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            flex-grow: 1;
+        }
+        
+        .product-specs {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+            margin-top: auto;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--secondary);
+        }
+        
+        /* Пагінація */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+        
+        .pagination a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Баннер категорії */
+        .category-banner {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .banner-text {
+            max-width: 500px;
+        }
+        
+        .banner-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .banner-image {
+            height: 100%;
+        }
+        
+        .banner-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Футер */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            margin-top: 4px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Адаптивність */
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .filters {
+                flex: 1;
+                width: 100%;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                order: 3;
+                max-width: 100%;
+                margin: 10px 0 0;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .sorting-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-banner {
+                flex-direction: column;
+                height: auto;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .banner-text {
+                margin-bottom: 20px;
+            }
+            
+            .banner-image img {
+                width: 100%;
+                height: auto;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-hard-hat"></i>
+                <div class="logo-text">Буд<span>Майстер</span></div>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Пошук будматеріалів...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="header-actions">
+                <a href="#">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Контакти</span>
+                </a>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Профіль</span>
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Кошик</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Навігація -->
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="#">Головна</a></li>
+                <li><a href="#" class="active">Будматеріали</a></li>
+                <li><a href="#">Інструменти</a></li>
+                <li><a href="#">Сантехніка</a></li>
+                <li><a href="#">Електрика</a></li>
+                <li><a href="#">Оздоблювальні</a></li>
+                <li><a href="#">Кріплення</a></li>
+                <li><a href="#">Знижки</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Бредкрамби -->
+    <div class="breadcrumbs">
+        <a href="#">Головна</a>
+        <span>/</span>
+        <a href="#">Категорії</a>
+        <span>/</span>
+        <span>Будівельні матеріали</span>
+    </div>
+    
+    <!-- Заголовок категорії -->
+    <div class="category-header">
+        <h1>Будівельні матеріали</h1>
+        <p>Знайдіть все необхідне для будівництва та ремонту - від фундаменту до даху. Якісні матеріали за доступними цінами з доставкою по всій Україні.</p>
+    </div>
+    
+    <!-- Баннер категорії -->
+    <div class="category-banner">
+        <div class="banner-text">
+            <h2>Сезонні знижки до 30%</h2>
+            <p>Акція на цемент, цеглу та покрівельні матеріали. Тільки до кінця місяця!</p>
+        </div>
+        <div class="banner-image">
+            <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Будівельні матеріали">
+        </div>
+    </div>
+    
+    <!-- Основний контент -->
+    <div class="main-container">
+        <!-- Фільтри -->
+        <div class="filters">
+            <h2>Фільтри</h2>
+            
+            <div class="filter-section">
+                <h3>Ціна</h3>
+                <input type="range" min="0" max="50000" value="25000" class="slider">
+                <div class="price-range">
+                    <span>0 ₴</span>
+                    <span>50 000 ₴</span>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Категорії</h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="cement">
+                        <label for="cement">Цемент та суміші</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="bricks">
+                        <label for="bricks">Цегла та блоки</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="wood">
+                        <label for="wood">Пиломатеріали</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="roof">
+                        <label for="roof">Покрівельні матеріали</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="insulation">
+                        <label for="insulation">Утеплювачі</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="drywall">
+                        <label for="drywall">Гіпсокартон</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Бренд</h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="knauf">
+                        <label for="knauf">Knauf</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="ceresit">
+                        <label for="ceresit">Ceresit</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="lux">
+                        <label for="lux">LUX</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="budmaterial">
+                        <label for="budmaterial">Будматеріал</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Наявність</h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="stock">
+                        <label for="stock">В наявності</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="promo">
+                        <label for="promo">Акційні товари</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="apply-filters">Застосувати фільтри</button>
+        </div>
+        
+        <!-- Товари -->
+        <div class="products">
+            <!-- Панель сортування -->
+            <div class="sorting-bar">
+                <div class="results-info">Знайдено 72 товари</div>
+                <div class="sort-by">
+                    <label for="sort">Сортування:</label>
+                    <select id="sort">
+                        <option value="popular">За популярністю</option>
+                        <option value="price-low">Від дешевих до дорогих</option>
+                        <option value="price-high">Від дорогих до дешевих</option>
+                        <option value="newest">Новинки</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Сітка товарів -->
+            <div class="products-grid">
+                <!-- Товар 1 -->
+                <div class="product-card">
+                    <div class="product-badge">Акція</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Цегла">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Цегла</div>
+                        <h3 class="product-title">Цегла керамічна повнотіла М100</h3>
+                        <div class="product-specs">Розмір: 250x120x65 мм</div>
+                        <div class="product-price">
+                            <div class="current-price">8.50 ₴/шт</div>
+                            <div class="old-price">9.20 ₴/шт</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Цемент">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Цемент</div>
+                        <h3 class="product-title">Цемент ПЦ400 Д20 (50кг)</h3>
+                        <div class="product-specs">Марка: ПЦ400, фракція 20</div>
+                        <div class="product-price">
+                            <div class="current-price">210 ₴/мішок</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1593697909683-bccb1b9e68a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Піломатеріали">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Пиломатеріали</div>
+                        <h3 class="product-title">Дошка обрізна 50x150x6000 мм</h3>
+                        <div class="product-specs">Сорт: А, сосна</div>
+                        <div class="product-price">
+                            <div class="current-price">120 ₴/шт</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 4 -->
+                <div class="product-card">
+                    <div class="product-badge">Новинка</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1631549916768-4119ffd8c9b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Газоблок">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Блоки</div>
+                        <h3 class="product-title">Газоблок AEROC D500 600x200x300</h3>
+                        <div class="product-specs">Щільність: D500</div>
+                        <div class="product-price">
+                            <div class="current-price">185 ₴/шт</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594818379496-da1e345b0ded?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Гіпсокартон">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Гіпсокартон</div>
+                        <h3 class="product-title">ГКЛ Knauf 2500x1200x12.5 мм</h3>
+                        <div class="product-specs">Тип: стіновий</div>
+                        <div class="product-price">
+                            <div class="current-price">165 ₴/лист</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 6 -->
+                <div class="product-card">
+                    <div class="product-badge">Акція</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591955506264-3f5a6834570a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Металопрокат">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Металопрокат</div>
+                        <h3 class="product-title">Арматура А500С Ø12 мм</h3>
+                        <div class="product-specs">Довжина: 11.7 м</div>
+                        <div class="product-price">
+                            <div class="current-price">330 ₴/шт</div>
+                            <div class="old-price">350 ₴/шт</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1620395450369-365a4b10f1f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Пінопласт">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Утеплювачі</div>
+                        <h3 class="product-title">Пінопласт ПСБ-С 25Ф 1000x1000x50 мм</h3>
+                        <div class="product-specs">Щільність: 25 кг/м³</div>
+                        <div class="product-price">
+                            <div class="current-price">85 ₴/лист</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Товар 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1560518880-ceba602db91f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Черепиця">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Покрівля</div>
+                        <h3 class="product-title">Черепиця керамічна коричнева</h3>
+                        <div class="product-specs">Розмір: 330x420 мм</div>
+                        <div class="product-price">
+                            <div class="current-price">55 ₴/шт</div>
+                        </div>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            В кошик
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Пагінація -->
+            <div class="pagination">
+                <a href="#"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Про магазин</h3>
+                <p>БудМайстер - провідний постачальник будівельних матеріалів в Україні. Ми пропонуємо якісні товари для професійного будівництва та ремонту.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Категорії</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Цегла та блоки</a></li>
+                    <li><a href="#">Цемент та суміші</a></li>
+                    <li><a href="#">Пиломатеріали</a></li>
+                    <li><a href="#">Покрівельні матеріали</a></li>
+                    <li><a href="#">Гіпсокартон</a></li>
+                    <li><a href="#">Металопрокат</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Корисні посилання</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Про нас</a></li>
+                    <li><a href="#">Доставка та оплата</a></li>
+                    <li><a href="#">Гарантія</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="#">Вакансії</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакти</h3>
+                <ul class="footer-links contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Київ, вул. Будівельна, 15</li>
+                    <li><i class="fas fa-phone"></i> +38 (044) 123-45-67</li>
+                    <li><i class="fas fa-envelope"></i> info@budmaister.ua</li>
+                    <li><i class="fas fa-clock"></i> Пн-Пт: 8:00 - 20:00</li>
+                    <li><i class="fas fa-clock"></i> Сб-Нд: 9:00 - 18:00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 БудМайстер. Всі права захищені.
+        </div>
+    </footer>
+    
+    <script>
+        // Простий JavaScript для інтерактивності
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const product = this.closest('.product-card');
+                const title = product.querySelector('.product-title').textContent;
+                
+                // Анімація кнопки
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Додано';
+                this.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                    this.style.background = '';
+                }, 2000);
+                
+                alert(`Товар "${title}" додано до кошика!`);
+            });
+        });
+        
+        // Функція фільтрів
+        document.querySelector('.apply-filters').addEventListener('click', function() {
+            alert('Фільтри застосовано! Оновлено список товарів.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Акція</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="main.html">Головна</a>
+            <a href="catalogue.html">Каталог</a>
+            <a href="#about">Про нас</a>
+        </nav>
+    </header>
+    <main>
+        <section class="catalog" id="catalog"></section>
+        <div id="sale"><img src="yfgg (2).png" width="1000px" height="900px"></div>
+        <div id="about"></div>  
+        <div id="sale"><img src="10%.jpg" width="1000px" height="900px"></div>
+        <div id="sale"><img src="60%.jpg" width="1000px" height="900px" ></div>
+        <div id="sale"><img src="bguibv(1).png" width="1000px" height="900px"></div>
+    </main>
+    
+        <footer>
+       
+        </footer>
+        <script src="script.js"></script>
+        <script>
+            let countBuy = document.querySelector(".count-buy")
+            if (localStorage.length == 0){
+                countBuy.innerHTML = ""
+            } else{
+                let count = 0
+                for (let key in localStorage){
+                    if (localStorage.hasOwnProperty(key)){
+                    let temp = JSON.parse(localStorage.getItem(key) || "{}")
+                    count += temp["count"]
+                }}
+                countBuy.innerText = count.toString()
+                   }
+        </script>
+    </body>
+</html>

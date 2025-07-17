@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo-container">
+                <img src="vftg5_5.png">
+                <div class="logo-name">StroyOptTorg</div>
+            </div>
+            <div class="menu">
+                <nav>
+                <a href="catalogue.html">Каталог</a>
+                <a href="sale.html">Акції</a>
+                <a href="#about">Про нас</a>
+                </nav>
+            </div>
+            <div class="basket">
+                <div class="count-buy"></div>
+                <img src="280-2803402_warenkorb-green-shopping-cart-icon-hd-png-download.png">
+            </div>
+        </header>
+        
+        <main>
+            <section class="catalog" id="catalog"></section> 
+        </main>
+        
+        <footer>
+            <img src="Telegram-logo.png" width="50px" height="50px">
+        </footer>
+        <script src="script.js"></script>
+        <script>
+            let countBuy = document.querySelector(".count-buy")
+            if (localStorage.length == 0){
+                countBuy.innerHTML = ""
+            } else{
+                let count = 0
+                for (let key in localStorage){
+                    if (localStorage.hasOwnProperty(key)){
+                    let temp = JSON.parse(localStorage.getItem(key) || "{}")
+                    count += temp["count"]
+                }}
+                countBuy.innerText = count.toString()
+            }
+
+        </script>
+    </body>
+</html>
